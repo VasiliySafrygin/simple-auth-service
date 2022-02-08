@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option go_package = "/rpcpb";
+
+package proto;
+
+
+service AuthService {
+    rpc GetUserByName(GetUserByNameRequest) returns (GetUserByNameResponse) {}
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+    rpc CheckToken(CheckTokenRequest) returns (CheckTokenResponse) {}
+}
+
+message User {
+    string id = 1;
+	  string username = 2;
+    string first_name = 3;
+    string last_name = 4;
+    string middle_name = 5;
+	  string password = 6;
+}
+
+message GetUserByNameRequest {
+    string name = 1;
+}
+message GetUserByNameResponse {
+    User user = 1;
+}
+message CreateUserRequest {
+    string username = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string middle_name = 4;
+    string password = 5;
+}
+message CreateUserResponse {
+    User user = 1;
+    string token = 2;
+}
+message CheckTokenRequest {
+    string token = 1;
+}
+message CheckTokenResponse {
+    bool result = 1;
+    string user_id = 2;
+
+}
